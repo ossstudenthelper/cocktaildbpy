@@ -18,6 +18,8 @@ def main():
     drinks = client.search_by_ingredient(Ingredient.GIN)
     drink = client.lookup_cocktail_by_id(drinks[0].id)
     print(drink)
+    drink = client.get_cocktail_by_name("old fashioned")
+    print(drink)
 
 if __name__ == "__main__":
     main()

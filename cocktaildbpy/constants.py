@@ -49,7 +49,8 @@ class Category(Enum):
 
 
 class Ingredient(Enum):
-    APPLEJACK = "Light rum"
+    APPLEJACK = "Applejack"
+    LIGHT_RUM = "Light rum"
     GIN = "Gin"
     DARK_RUM = "Dark rum"
     SWEET_VERMOUTH = "Sweet Vermouth"
@@ -70,7 +71,7 @@ class Ingredient(Enum):
     BOURBON = "Bourbon"
     TEQUILA = "Tequila"
     VODKA = "Vodka"
-    AÑEJO_RUM = "Añejo rum"
+    ANEJO_RUM = "Añejo rum"
     BITTERS = "Bitters"
     SUGAR = "Sugar"
     KAHLUA = "Kahlua"

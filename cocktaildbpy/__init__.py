@@ -40,9 +40,19 @@ class Api:
     def __init__(self, api_key):
         self.client = ApiSession(base_url=self.base_url + f"/{api_key}/")
 
+    def get_cocktail_by_name(self, name: str) -> Drink:
+        r = self.client.get("search.php", params={"s": name})
+        response = r.json()
+        if response["drinks"] is None:
+            raise ValueError("Drink not found")
+        drink = Drink.loads(**response["drinks"][0])
+        return drink
+
     def lookup_cocktail_by_id(self, id: str) -> Drink:
         r = self.client.get("lookup.php", params={"i": id})
         response = r.json()
+        if response["drinks"] is None:
+            raise ValueError("Drink not found")
         drink = Drink.loads(**response["drinks"][0])
         return drink
 
@@ -50,5 +60,7 @@ class Api:
         __ingredient = ingredient if isinstance(ingredient, str) else ingredient.value
         r = self.client.get("filter.php", params={"i": __ingredient})
         response = r.json()
+        if response["drinks"] is None:
+            raise ValueError("Ingredient not found")
         drinks = [DrinkShortcut.loads(**x) for x in response["drinks"]]
         return drinks

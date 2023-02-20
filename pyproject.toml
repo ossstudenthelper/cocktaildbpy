@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cocktaildbpy"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
-  { name="OSS Student Teacher", email=""},
+  { name="OSS Student Teacher", email="ossstudenthelper@proton.me"},
 ]
 description = "A small python library to interact with cocktaildb api (https://www.thecocktaildb.com/api.php)"
 readme = "README.md"
