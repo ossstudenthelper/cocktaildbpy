@@ -2,27 +2,10 @@ from dataclasses import dataclass
 from typing import List, Union
 from urllib.parse import urljoin
 
-import requests
 from requests import Session
 
-from cocktaildbpy.drink import Drink
+from cocktaildbpy.drink import Drink, DrinkShortcut
 from cocktaildbpy.constants import Ingredient
-
-
-@dataclass
-class DrinkShortcut:
-    name: str
-    thumbnail: str
-    id: str
-
-    @classmethod
-    def loads(cls, **kwargs):
-        return cls(
-            name=kwargs["strDrink"],
-            thumbnail=kwargs["strDrinkThumb"],
-            id=kwargs["idDrink"],
-        )
-
 
 class ApiSession(Session):
     def __init__(self, base_url=None):
@@ -41,7 +24,7 @@ class Api:
         self.client = ApiSession(base_url=self.base_url + f"/{api_key}/")
 
     def get_cocktail_by_name(self, name: str) -> Drink:
-        r = self.client.get("search.php", params={"s": name})
+        r = self.client.get("search.php", params={"s": str(name).lower()})
         response = r.json()
         if response["drinks"] is None:
             raise ValueError("Drink not found")

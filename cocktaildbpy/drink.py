@@ -40,9 +40,9 @@ class Drink:
         return cls(
             id=kwargs["idDrink"],
             name=kwargs["strDrink"],
-            category=Category(kwargs["strCategory"]),
+            category=Category(str(kwargs["strCategory"]).lower()),
             alcoholic=True if kwargs["strAlcoholic"] == "Alcoholic" else False,
-            glass=Glass(kwargs["strGlass"]),
+            glass=Glass(str(kwargs["strGlass"]).lower()),
             instructions=kwargs["strInstructions"].split("."),
             ingriedients=ingriedients,
         )
